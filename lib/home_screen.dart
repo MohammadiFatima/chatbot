@@ -1,3 +1,4 @@
+import 'package:chatbot/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,14 +28,31 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Ask ChatterAI"),
-        backgroundColor: Colors.purple.shade800,
+ @override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.white,
+    appBar: AppBar(
+      backgroundColor: Colors.purple.shade800,
+      title: const Text(
+        "Ask ChatterAI",
+        style: TextStyle(color: Colors.white),
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.logout, color: Colors.white),
+          onPressed: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => SplashScreen()),
+                (Route<dynamic> route) => false,
+              );
+  print("Logout tapped");
+},
+        ),
+      ],
+    ),
+
       body: Stack(
         children: [
           Positioned.fill(
