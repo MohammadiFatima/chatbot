@@ -8,20 +8,6 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final TextEditingController _emailController = TextEditingController();
 
-  void _handleResetPassword() {
-    if (_emailController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter your email')),
-      );
-      return;
-    }
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Password reset link sent to ${_emailController.text}')),
-    );
-    // Here, you'd normally send a password reset email using Firebase or backend.
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +60,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _handleResetPassword,
+                  onPressed: () {}, //will connect this button with backend_service
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF9B5DE5),
                     foregroundColor: Colors.white,

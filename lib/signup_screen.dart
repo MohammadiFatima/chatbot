@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'signin_screen.dart'; // Import the SigninScreen
+import 'signin_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -18,57 +18,6 @@ class _SignUpScreenState extends State<SignupScreen> {
 
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
-
-void _showSnackBar(String message) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Container(
-        width: double.infinity, // Make the SnackBar full-width
-        child: Text(
-          message,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      behavior: SnackBarBehavior.floating,
-    ),
-  );
-}
-
-
-void _signUp() {
-  final String email = _emailTextController.text.trim();
-  final String password = _passwordTextController.text.trim();
-  final String confirmPassword = _confirmPasswordTextController.text.trim();
-  final String fullName = _userNameTextController.text.trim();
-
-  if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty || fullName.isEmpty) {
-    _showSnackBar("Please fill all fields");
-    return;
-  }
-
-  if (!email.contains('@')) {
-    _showSnackBar("Enter a valid email address");
-    return;
-  }
-
-  if (password.length < 6) {
-    _showSnackBar("Password must be at least 6 characters");
-    return;
-  }
-
-  if (password != confirmPassword) {
-    _showSnackBar("Passwords do not match");
-    return;
-  }
-
-  _showSnackBar("Account created successfully (locally)");
-
-  // Navigate or reset form as per your app flow
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +97,13 @@ void _signUp() {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: _signUp,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SigninScreen()), //for now
+                      );
+                    
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF9B5DE5),
                       foregroundColor: Colors.white,
