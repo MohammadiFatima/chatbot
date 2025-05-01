@@ -51,7 +51,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF3E4),
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Removes back button
+        automaticallyImplyLeading: false, 
         title: const Text("💬 ChatterAI"),
         backgroundColor: const Color(0xFF9B5DE5),
         foregroundColor: Colors.white,
@@ -67,18 +67,15 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                     "Logged out successfully!",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  backgroundColor: Colors.green,
-                  behavior: SnackBarBehavior.floating,
                 ),
               );
 
-              // Navigate to the login screen and replace the current screen
               Future.delayed(const Duration(seconds: 1), () {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => SigninScreen(),
-                  ), // Adjust according to your login screen class
+                  ), 
                 );
               });
             },

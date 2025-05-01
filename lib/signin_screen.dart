@@ -1,6 +1,6 @@
 import 'package:chatbot/password_reset.dart';
 import 'package:flutter/material.dart';
-import 'chat_bot.dart';
+import 'chatbot_screen.dart';
 import 'signup_screen.dart';
 
 class SigninScreen extends StatefulWidget {
@@ -13,20 +13,6 @@ class _SigninScreenState extends State<SigninScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
-  void _Login() {
-    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in all fields')),
-      );
-      return;
-    }
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => ChatbotScreen(username: 'Ameena')),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,12 +24,7 @@ class _SigninScreenState extends State<SigninScreen> {
             shrinkWrap: true,
             children: [
               const SizedBox(height: 30),
-              Center(
-                child: Image.asset(
-                  'assets/ChatterAI.png',
-                  height: 180,
-                ),
-              ),
+              Center(child: Image.asset('assets/ChatterAI.png', height: 180)),
               const SizedBox(height: 20),
               const Center(
                 child: Text(
@@ -139,7 +120,12 @@ class _SigninScreenState extends State<SigninScreen> {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ForgotPasswordScreen(),
+                      ),
+                    );
                   },
                   child: const Text(
                     'Forgot Password?',
@@ -157,7 +143,15 @@ class _SigninScreenState extends State<SigninScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _Login,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => ChatbotScreen(username: 'Mohammadi'),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF9B5DE5),
                     foregroundColor: Colors.white,
@@ -167,10 +161,7 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                     elevation: 4,
                   ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 16),
-                  ),
+                  child: const Text('Login', style: TextStyle(fontSize: 16)),
                 ),
               ),
 
